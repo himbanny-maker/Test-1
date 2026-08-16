@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HimBannyProxy — подключение</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --bg: #0e0e10;
+      --surface: #18181b;
+      --border: #27272a;
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.25);
+      --text: #f4f4f5;
+      --muted: #71717a;
+      --success: #22c55e;
+      --flag: #e8e8e8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: var(--accent-glow);
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    .flag {
+      font-size: 48px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .server-info {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      padding: 4px 0;
+    }
+
+    .info-row:not(:last-child) {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+    }
+
+    .info-label { color: var(--muted); }
+    .info-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: var(--success);
+      border-radius: 50%;
+      margin-right: 6px;
+      box-shadow: 0 0 6px var(--success);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 20px var(--accent-glow);
+      margin-bottom: 10px;
+    }
+
+    .btn-primary:hover {
+      background: #5254e7;
+      box-shadow: 0 6px 28px var(--accent-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .btn-secondary:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
+
+    .vless-box {
+      display: none;
+      margin-top: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .vless-box.show { display: block; }
+
+    .vless-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .vless-uri {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      word-break: break-all;
+      line-height: 1.6;
+    }
+
+    .copy-btn {
+      margin-top: 8px;
+      font-size: 12px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .hint {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="flag">🇷🇺</span>
+    <h1>HimBannyProxy</h1>
+    <p class="subtitle">Нажми кнопку ниже — конфиг откроется прямо в HAPP</p>
+
+    <div class="server-info">
+      <div class="info-row">
+        <span class="info-label">Сервер</span>
+        <span class="info-value">de-new-1.ariyuz.org</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Протокол</span>
+        <span class="info-value">VLESS · WS · TLS</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Порт</span>
+        <span class="info-value">443</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Статус</span>
+        <span class="info-value"><span class="dot"></span>Активен</span>
+      </div>
+    </div>
+
+    <a class="btn btn-primary" id="happBtn"
+      href="happ://import?url=vless%3A%2F%2F03707fb7-0990-440f-88f6-b0e0f7242a38%40170.114.45.239%3A443%3Ftype%3Dws%26security%3Dtls%26sni%3Dde-new-1.ariyuz.org%26path%3D%2F%23HimBannyProxy">
+      📲 Открыть в HAPP
+    </a>
+
+    <button class="btn btn-secondary" onclick="toggleVless()">
+      Показать VLESS-ссылку вручную
+    </button>
+
+    <div class="vless-box" id="vlessBox">
+      <div class="vless-label">VLESS URI</div>
+      <div class="vless-uri" id="vlessUri">
+        vless://03707fb7-0990-440f-88f6-b0e0f7242a38@170.114.45.239:443?type=ws&security=tls&sni=de-new-1.ariyuz.org&path=%2F#HimBannyProxy
+      </div>
+      <button class="copy-btn" onclick="copyVless()">Скопировать</button>
+    </div>
+
+    <p class="hint">
+      Нужен установленный HAPP.<br>
+      Если ссылка не открылась — скопируй VLESS вручную и вставь в приложение.
+    </p>
+  </div>
+
+  <script>
+    function toggleVless() {
+      document.getElementById('vlessBox').classList.toggle('show');
+    }
+
+    function copyVless() {
+      const uri = document.getElementById('vlessUri').innerText.trim();
+      navigator.clipboard.writeText(uri).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = '✓ Скопировано!';
+        setTimeout(() => btn.textContent = 'Скопировать', 2000);
+      });
+    }
+  </script>
+</body>
+</html>
