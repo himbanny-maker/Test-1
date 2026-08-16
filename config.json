@@ -1,9 +1,13 @@
 {
+  "subscriptionName": "HimBannyProxy 🇷🇺",
+  "name": "HimBannyProxy 🇷🇺",
+  "remarks": "HimBannyProxy 🇷🇺",
+  "meta": {
+    "serverDescription": "HimBannyService"
+  },
   "api": {
     "listen": "[::1]:10085",
-    "services": [
-      "StatsService"
-    ],
+    "services": ["StatsService"],
     "tag": "api"
   },
   "dns": {
@@ -57,11 +61,7 @@
         "userLevel": 8
       },
       "sniffing": {
-        "destOverride": [
-          "http",
-          "tls",
-          "quic"
-        ],
+        "destOverride": ["http", "tls", "quic"],
         "enabled": true
       },
       "tag": "socks"
@@ -137,10 +137,6 @@
       "statsOutboundDownlink": true
     }
   },
-  "remarks": "HimBannyProxy 🇷🇺",
-  "meta": {
-    "serverDescription": "HimBannyService"
-  },
   "routing": {
     "domainStrategy": "IPIfNonMatch",
     "rules": [
@@ -155,21 +151,11 @@
         "port": "443"
       },
       {
-        "domain": [
-          "geosite:win-spy",
-          "geosite:torrent",
-          "geosite:category-ads"
-        ],
+        "domain": ["geosite:win-spy", "geosite:torrent", "geosite:category-ads"],
         "outboundTag": "block"
       },
       {
-        "domain": [
-          "geosite:google-play",
-          "geosite:github",
-          "geosite:twitch-ads",
-          "geosite:youtube",
-          "geosite:telegram"
-        ],
+        "domain": ["geosite:google-play", "geosite:github", "geosite:twitch-ads", "geosite:youtube", "geosite:telegram"],
         "outboundTag": "proxy"
       },
       {
@@ -194,14 +180,7 @@
         "outboundTag": "direct"
       },
       {
-        "ip": [
-          "10.0.0.0/8",
-          "172.16.0.0/12",
-          "192.168.0.0/16",
-          "169.254.0.0/16",
-          "224.0.0.0/4",
-          "255.255.255.255"
-        ],
+        "ip": ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "169.254.0.0/16", "224.0.0.0/4", "255.255.255.255"],
         "outboundTag": "direct"
       }
     ]
